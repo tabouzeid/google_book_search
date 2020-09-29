@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import BookItem from '../BookItem/index';
 
 function SearchPage(){
-    const [searchResults, setSearchResults] = useState({}); 
+    const [searchResults, setSearchResults] = useState([]); 
     
     return (
         <div className="container">
-            <section className="row border border-secondary p-3">
+            <section className="row border border-secondary p-3 mb-5">
                 <div className="col">
                     <form>
                         <div class="form-group">
@@ -16,9 +17,16 @@ function SearchPage(){
                     </form>
                 </div>
             </section>
-            <section className="row">
+            <section className="row border border-secondary p-3">
                 <div className="col">
-
+                <div class="card">
+                    <div class="card-header">
+                        Results
+                    </div>
+                    <div class="card-body">
+                        {searchResults.map((result, index) => <BookItem key={index} book={result}/>)}
+                    </div>
+                    </div>
                 </div>
             </section>
         </div>
