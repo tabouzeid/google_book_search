@@ -1,18 +1,18 @@
 import React from 'react'
 
-function BookItem(){
+function BookItem(props){
     return (
-        <div class="card mb-3" style={{maxWidth: "540px"}}>
-            <div class="row no-gutters">
-                <div class="col-md-4">
-                <img src="..." class="card-img" alt="..."/>
+        <div className="card mb-3">
+            <div className="row no-gutters">
+                <div className="col">
+                    <img src={props.book.volumeInfo.imageLinks.thumbnail} className="img-thumbnail" style={{width:'auto', height:'300px'}} alt="Book"/>
                 </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
+                <div className="col">
+                    <div className="card-body">
+                        <h4 className="card-title"><a href={props.book.volumeInfo.previewLink}>{props.book.volumeInfo.title}</a></h4>
+                        <h5 className="card-title">{'Written by ' + props.book.volumeInfo.authors}</h5>
+                        <p className="card-text">{props.book.volumeInfo.description}</p>
+                    </div>
                 </div>
             </div>
         </div>
