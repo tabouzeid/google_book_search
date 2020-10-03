@@ -9,6 +9,11 @@ const Schema = mongoose.Schema;
 // volumeInfo.description
 
 const BookSchema = new Schema({
+  _id: {
+    type: String,
+    trim: true,
+  },
+
   link: {
     type: String,
     trim: true,

@@ -15,8 +15,10 @@ function SearchPage() {
         fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchString)
             .then((resp) => resp.json())
             .then((result) => {
+                console.log(result.items)
                 setSearchResults(result.items.map((book) => {
                     return {
+                        _id: book.id,
                         title: book.volumeInfo.title,
                         image: book.volumeInfo.imageLinks.thumbnail,
                         authors: book.volumeInfo.authors,

@@ -4,7 +4,7 @@ function BookItem(props){
     return (
         <div className="card mb-3">
             <div className="card-header text-right">
-                <button onClick={props.buttonClicked} className="btn btn-primary">{props.buttonText}</button>
+                <button onClick={props.buttonClicked} id={props.book._id} className="btn btn-primary">{props.buttonText}</button>
             </div>
             <div className="row no-gutters">
                 <div className="col">

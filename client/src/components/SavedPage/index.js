@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import BookItem from '../BookItem'
 
 function SavedPage(){
     const [savedBooks, setSavedBooks] = useState([]);
 
-    const deleteBook = () => {};
+    const deleteBook = (event) => {
+        let id = event.target.getAttribute('id');
+        axios.delete('/api/books/'+id)
+        .then((response) => {
+            setSavedBooks(savedBooks.filter((book) => book._id !== id));
+        })
+    };
 
     useEffect(() => {
-        fetch("http://localhost:3001/api/books")
+        fetch("/api/books")
         .then((result) => result.json())
         .then((result) => {
             setSavedBooks(result);
