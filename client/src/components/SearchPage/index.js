@@ -11,7 +11,6 @@ function SearchPage(){
         fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchString)
         .then((resp) => resp.json())
         .then((result) => {
-            // console.log(result)
             setSearchResults(result.items);
         });
     };
