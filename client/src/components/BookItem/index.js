@@ -3,6 +3,9 @@ import React from 'react'
 function BookItem(props){
     return (
         <div className="card mb-3">
+            <div className="card-header text-right">
+                <button onClick={props.buttonClicked} className="btn btn-primary">{props.buttonText}</button>
+            </div>
             <div className="row no-gutters">
                 <div className="col">
                     <img src={props.book.image} className="img-thumbnail" style={{width:'auto', height:'300px'}} alt="Book"/>

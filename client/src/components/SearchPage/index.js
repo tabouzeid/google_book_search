@@ -2,25 +2,29 @@ import React, { useState } from 'react'
 import BookItem from '../BookItem/index';
 
 
-function SearchPage(){
-    const [searchResults, setSearchResults] = useState([]); 
+function SearchPage() {
+    const [searchResults, setSearchResults] = useState([]);
+
+    const addBook = () => {
+
+    }
 
     const search = (event) => {
         event.preventDefault();
         let searchString = event.target.searchinput.value;
         fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchString)
-        .then((resp) => resp.json())
-        .then((result) => {
-            setSearchResults(result.items.map((book) => {
-                return {
-                    title: book.volumeInfo.title,
-                    image: book.volumeInfo.imageLinks.thumbnail,
-                    authors: book.volumeInfo.authors,
-                    link: book.volumeInfo.previewLink,
-                    description: book.volumeInfo.description,
-                }   
-            }));
-        });
+            .then((resp) => resp.json())
+            .then((result) => {
+                setSearchResults(result.items.map((book) => {
+                    return {
+                        title: book.volumeInfo.title,
+                        image: book.volumeInfo.imageLinks.thumbnail,
+                        authors: book.volumeInfo.authors,
+                        link: book.volumeInfo.previewLink,
+                        description: book.volumeInfo.description,
+                    }
+                }));
+            });
     };
 
     return (
@@ -30,7 +34,7 @@ function SearchPage(){
                     <form onSubmit={search}>
                         <div className="form-group">
                             <label>Search</label>
-                            <input type="text" className="form-control" name="searchinput" placeholder="Search by Book Name"/>
+                            <input type="text" className="form-control" name="searchinput" placeholder="Search by Book Name" />
                         </div>
                         <button type="submit" className="btn btn-primary">Search</button>
                     </form>
@@ -43,10 +47,10 @@ function SearchPage(){
                             Results
                         </div>
                         <div className="card-body">
-                            {searchResults.map((result, index) => <BookItem key={index} book={result}/>)}
-                        </div>
+                            {searchResults.map((result, index) => <BookItem key={index} buttonText="Add" buttonClicked={addBook} book={result} />)}
                         </div>
                     </div>
+                </div>
             </section>
         </div>
     );

@@ -4,6 +4,8 @@ import BookItem from '../BookItem'
 function SavedPage(){
     const [savedBooks, setSavedBooks] = useState([]);
 
+    const deleteBook = () => {};
+
     useEffect(() => {
         fetch("http://localhost:3001/api/books")
         .then((result) => result.json())
@@ -21,7 +23,7 @@ function SavedPage(){
                             Saved
                         </div>
                         <div className="card-body">
-                            {savedBooks.map((book, index) => <BookItem key={index} book={book}/>)}
+                            {savedBooks.map((book, index) => <BookItem key={index} buttonText="Remove" buttonClicked={deleteBook} book={book}/>)}
                         </div>
                     </div>
                 </div>
