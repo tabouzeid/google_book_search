@@ -2,16 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-// volumeInfo.imageLinks.thumbnail
-// volumeInfo.previewLink
-// volumeInfo.title
-// volumeInfo.authors
-// volumeInfo.description
-
 const BookSchema = new Schema({
   _id: {
     type: String,
     trim: true,
+    unique: true,
+    required:  true,
   },
 
   link: {

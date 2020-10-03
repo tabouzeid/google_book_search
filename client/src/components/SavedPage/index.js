@@ -30,7 +30,7 @@ function SavedPage(){
                             Saved
                         </div>
                         <div className="card-body">
-                            {savedBooks.map((book, index) => <BookItem key={index} buttonText="Remove" buttonClicked={deleteBook} book={book}/>)}
+                            {savedBooks.map((book, index) => <BookItem key={index} index={index} buttonText="Remove" buttonClicked={deleteBook} book={book}/>)}
                         </div>
                     </div>
                 </div>

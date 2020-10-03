@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import BookItem from '../BookItem/index';
 
 
 function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
 
-    const addBook = () => {
-
+    const addBook = (event) => {
+        let bookIndex = parseInt(event.target.getAttribute('index'));
+        axios.post('/api/books', searchResults[bookIndex]);
     }
 
     const search = (event) => {
@@ -49,7 +51,7 @@ function SearchPage() {
                             Results
                         </div>
                         <div className="card-body">
-                            {searchResults.map((result, index) => <BookItem key={index} buttonText="Add" buttonClicked={addBook} book={result} />)}
+                            {searchResults.map((result, index) => <BookItem key={index} index={index} buttonText="Add" buttonClicked={addBook} book={result} />)}
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ app.get("*", function(req, res) {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/booksdb", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/booksdb", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 // Start the API server
 app.listen(PORT, function() {
