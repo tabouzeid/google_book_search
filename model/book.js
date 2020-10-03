@@ -9,7 +9,12 @@ const Schema = mongoose.Schema;
 // volumeInfo.description
 
 const BookSchema = new Schema({
-  previewLink: {
+  link: {
+    type: String,
+    trim: true,
+  },
+
+  image: {
     type: String,
     trim: true,
   },
@@ -20,7 +25,7 @@ const BookSchema = new Schema({
   },
 
   authors: {
-    type: String,
+    type: [String],
     trim: true,
   },
 

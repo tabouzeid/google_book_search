@@ -11,7 +11,15 @@ function SearchPage(){
         fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchString)
         .then((resp) => resp.json())
         .then((result) => {
-            setSearchResults(result.items);
+            setSearchResults(result.items.map((book) => {
+                return {
+                    title: book.volumeInfo.title,
+                    image: book.volumeInfo.imageLinks.thumbnail,
+                    authors: book.volumeInfo.authors,
+                    link: book.volumeInfo.previewLink,
+                    description: book.volumeInfo.description,
+                }   
+            }));
         });
     };
 

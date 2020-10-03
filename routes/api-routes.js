@@ -2,7 +2,7 @@ const bookController = require("../controller/bookController");
 
 module.exports = function(app) {
     app.get("/api/books", function(req, res) {
-      bookController.findAll(res, req);
+      bookController.findAll(req, res);
     });
 
     app.post("/api/books", function(req, res) {
