@@ -17,16 +17,23 @@ function SearchPage() {
         fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchString)
             .then((resp) => resp.json())
             .then((result) => {
-                console.log(result.items)
                 setSearchResults(result.items.map((book) => {
-                    return {
+                    let bookInfo = {
                         _id: book.id,
-                        title: book.volumeInfo.title,
-                        image: book.volumeInfo.imageLinks.thumbnail,
-                        authors: book.volumeInfo.authors,
-                        link: book.volumeInfo.previewLink,
-                        description: book.volumeInfo.description,
                     }
+
+                    const volumeInfo = book.volumeInfo
+                    if(volumeInfo) {
+                        bookInfo.title = volumeInfo.title ? volumeInfo.title : "Title Not Available"
+                        bookInfo.authors = volumeInfo.authors ? volumeInfo.authors : "Author Not Available"
+                        bookInfo.link = volumeInfo.previewLink ? volumeInfo.previewLink : "Book Link Not Available"
+                        bookInfo.description = volumeInfo.description ? volumeInfo.description : "Description Not Available"
+                        if(volumeInfo.imageLinks) {
+                            bookInfo.image = volumeInfo.imageLinks.thumbnail ? volumeInfo.imageLinks.thumbnail : null
+                        }
+                    }
+
+                    return bookInfo
                 }));
             });
     };
